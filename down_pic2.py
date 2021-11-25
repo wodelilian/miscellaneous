@@ -1,6 +1,4 @@
 import requests
-from bs4 import BeautifulSoup
-from requests_html import HTMLSession
 import time
 src_list = []  # 创建一个空图片地址列表
 headers = {"User-Agent": 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'}
