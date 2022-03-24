@@ -60,16 +60,23 @@ def workweixin():
     # print(data)
     try:
         wx_url = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token="+access_token
-        response = requests.post(url=wx_url,data=json.dumps(data)).text
+        response = requests.post(url=wx_url,data=json.dumps(data))
+        status = response.json()['errcode']
+        errmsg = response.json()['errmsg']
+        msgid = response.json()['msgid']
         # print(response)
-        print("*******************************************")
-        print("***************天气预报推送成功***************")
-        print("*******************************************")
-    except:
+        if status == 0:
+            print("*******************************************")
+            print("***************天气预报推送成功***************")
+            print("接口访问成功!msgid："+msgid)
+            print("*******************************************")
+        else:
+            print("接口访问失败!errmsg："+errmsg)
+    except Exception as e:
         print("*******************************************")
         print("***************天气预报推送失败***************")
+        print("错误信息："+e)
         print("*******************************************")
-
 
 if __name__ == '__main__':
     workweixin()
