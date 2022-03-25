@@ -51,8 +51,8 @@ def dowm_img():
                     print("成功下载第{}张图片~~".format(conte))
             else:
                 pass
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':
