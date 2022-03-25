@@ -50,7 +50,7 @@ def dowm_img():
                     f.write(date)
                     print("成功下载第{}张图片~~".format(conte))
             else:
-                pass
+                print("下载失败！")
     except Exception as e:
         print(e)
 
