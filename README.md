@@ -5,4 +5,4 @@
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/BeichenDream/Godzilla.svg)](https://starchart.cc/BeichenDream/Godzilla)
+[![Stargazers over time](https://github.com/wodelilian/miscellaneous)](https://github.com/wodelilian/miscellaneous)
