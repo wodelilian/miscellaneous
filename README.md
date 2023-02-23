@@ -3,6 +3,7 @@
 ## 随便写写
 
 
+
 ## Stargazers over time
 
-[![Stargazers over time](https://github.com/wodelilian/miscellaneous)](https://github.com/wodelilian/miscellaneous)
+[![Stargazers over time](https://starchart.cc/wodelilian/miscellaneous.svg)](https://starchart.cc/wodelilian/miscellaneous)
