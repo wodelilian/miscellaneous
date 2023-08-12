@@ -1,7 +1,7 @@
 """
 -*- coding: utf-8 -*-
 @Project : 企业微信未授权访问
-@Version : Joomla4.0.0——Joomla4.2.7
+@Version : 2.5.x版本2.6.930000 版本以下
 @Author  : wodelilian
 @Date    : 2023/8/12 00:19
 Software : PyCharm
