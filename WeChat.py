@@ -84,7 +84,7 @@ def openfile(filepath):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='python3 joomla(CVE-2023-23752).py -r [Pattern(alone list)] -u [IP Address] ',
-        epilog='python3 -r alone -u 127.0.0.1 ')
+        epilog='python3 -r alone -u https://127.0.0.1 ')
     parser.add_argument('-r', '--run',  help='Pattern(alone list)')
     parser.add_argument('-u', '--url',  help='Destination IP address or IP filepath')
     args = parser.parse_args()
