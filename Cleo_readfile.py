@@ -6,6 +6,7 @@
 Software : PyCharm
 version  : Python 3.10
 @File    : Cleo_readfile.py
+@fofa    : body="packages/partnerlogos/userportal_logo"
 """
 import re
 import requests
