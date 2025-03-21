@@ -167,7 +167,7 @@ def openfile(filepath):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='python3 Cleo_readfile.py -r [Pattern(alone list)] -u [IP Address] ',
-        epilog='python3 -r alone -u http://127.0.0.1 or python3 -r list -u filename')
+        epilog='python3 -r alone -u http://127.0.0.1:80 or python3 -r list -u filename')
     parser.add_argument('-r', '--run',  help='Pattern(alone list)')
     parser.add_argument('-u', '--url',  help='Destination IP address or IP filepath')
     args = parser.parse_args()
