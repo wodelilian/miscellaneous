@@ -64,6 +64,7 @@ def checktarget(pattern, url):
                     print("\033[32mThe data has been written to etcpassd.txt in the current path. Please check carefully")
                 else:
                     print("\033[32mThe current IP execution failed, the vulnerability may not exist!")
+                    exit()
                 try:
                     hostname = getip(url)
                     if hostname != "":
